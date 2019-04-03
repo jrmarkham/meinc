@@ -21,8 +21,9 @@ class _OverlayAnimationState extends State<OverlayAnimation>
     _controller.addListener(() {
       setState(() {});
       if (_closing && _controller.value < 0.01) {
-        dispose();
+        _closing = false;
         Navigator.of(context).pop();
+        dispose();
       }
     });
     _controller.forward();

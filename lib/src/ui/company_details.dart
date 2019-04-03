@@ -24,6 +24,7 @@ class CompanyDetails extends StatelessWidget {
   void openOverlay(BuildContext context, String title, String content) {
     Navigator.push(context,
         FadeRoute(widget: OverlayAnimation(content: content, title: title)));
+    return;
   }
 
   final double devWidth;
