@@ -1,0 +1,40 @@
+name: markham_enterprises_inc
+description: A new Flutter project.
+version: 1.0.4
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^0.1.2
+  url_launcher: any
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/backs/logoME.png
+    - assets/images/backs/logoMEGA.png
+    - assets/images/icons/logoSquareME.png
+    - assets/images/icons/logoSquareMEGA.png
+    - assets/images/works/pool.png
+    - assets/images/works/snow.png
+    - assets/images/works/bugle.png
+    - assets/images/works/me.png
+  #  - images/a_dot_burr.jpeg
+  #  - images/a_dot_ham.jpeg
+  fonts:
+    - family: Arial
+      fonts:
+        - asset: assets/fonts/arial.ttf
+
+    - family: Trajan Pro
+      fonts:
+         - asset: assets/fonts/TrajanPro-Regular.otf
+         - asset: assets/fonts/TrajanPro-Bold.otf
+           weight: 700
+
