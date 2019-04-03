@@ -1,9 +1,11 @@
 # Markham Enterprises Inc (the App)
 
 Just a quick little profile app for my company : 
-https://meinc.markhamenterprises.com (link to my website listing).
-Play Store Link : https://play.google.com/store/apps/details?id=apps.markhamenterprise.mei.markham_enterprises_inc
-Itunes: coming soon (waiitng on approval).
+- https://meinc.markhamenterprises.com (link to my website listing).
+
+- Play Store Link : https://play.google.com/store/apps/details?id=apps.markhamenterprise.mei.markham_enterprises_inc
+
+- Itunes: coming soon (waiitng on approval).
 
 ## Getting Started
 
