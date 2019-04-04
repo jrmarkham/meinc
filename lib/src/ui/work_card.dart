@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:markham_enterprises_inc/src/models/company.dart';
+import 'package:markham_enterprises_inc/src/ui/animation/overlay.dart';
+import 'package:markham_enterprises_inc/src/ui/animation/page_transition.dart';
 import 'package:markham_enterprises_inc/src/ui/theme_style.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -11,6 +15,12 @@ class WorkCard extends StatelessWidget {
   bool _link;
   final Work work;
   final double width;
+
+  void openOverlay(BuildContext context, String title, String content) {
+    Navigator.push(context,
+        FadeRoute(widget: OverlayAnimation(content: content, title: title)));
+    return;
+  }
 
   BoxDecoration _shadowCorners() {
     return BoxDecoration(
@@ -46,10 +56,13 @@ class WorkCard extends StatelessWidget {
     );
   }
 
-  void _launchWorkURL() async {
-    if (await canLaunch(work.url)) {
+  void _launchWorkURL(context) async {
+    if (Platform.isAndroid && await canLaunch(work.url)) {
       await launch(work.url);
+      return;
     }
+
+    openOverlay(context, work.title, work.info);
   }
 
   Widget _createThumbContainer() {
@@ -76,7 +89,7 @@ class WorkCard extends StatelessWidget {
       return _createThumbContainer();
     } else {
       return GestureDetector(
-        onTap: _launchWorkURL,
+        onTap: () => _launchWorkURL(context),
         child: _createThumbContainer(),
       );
     }

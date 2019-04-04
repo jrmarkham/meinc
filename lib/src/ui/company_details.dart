@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -41,10 +42,13 @@ class CompanyDetails extends StatelessWidget {
     return devHeight * 0.3;
   }
 
-  void openLinks(String url) async {
-    if (await canLaunch(url)) {
+  void openLinks(
+      BuildContext context, String title, String info, String url) async {
+    if (Platform.isAndroid && await canLaunch(url)) {
       await launch(url);
+      return;
     }
+    openOverlay(context, title, info);
   }
 
   Widget _createWorkScroller() {
@@ -69,7 +73,7 @@ class CompanyDetails extends StatelessWidget {
     );
   }
 
-  Widget _createLogoLinkTop() {
+  Widget _createLogoLinkTop(BuildContext context) {
     return Container(
       height: devWidth > 600 ? 230.0 : 150.0,
       margin: const EdgeInsets.only(top: 30.0, left: 5.0, right: 5.0),
@@ -84,7 +88,7 @@ class CompanyDetails extends StatelessWidget {
             ),
             Container(
               width: devWidth > 600 ? (devWidth - 315.0) : (devWidth - 135.0),
-              child: _createLinkButtons(),
+              child: _createLinkButtons(context),
             )
           ],
         ),
@@ -92,16 +96,20 @@ class CompanyDetails extends StatelessWidget {
     );
   }
 
-  Widget _createLinkButtons() {
+  Widget _createLinkButtons(BuildContext context) {
     return Column(
       children: <Widget>[
         SizedBox(
           height: 20.0,
         ),
         linkButton(
-            company.links[0].name, () => openLinks(company.links[0].url)),
+            company.links[0].name,
+            () => openLinks(context, company.links[0].name,
+                company.links[0].info, company.links[0].url)),
         linkButton(
-            company.links[1].name, () => openLinks(company.links[1].url)),
+            company.links[1].name,
+            () => openLinks(context, company.links[1].name,
+                company.links[1].info, company.links[1].url)),
       ],
     );
   }
@@ -150,7 +158,7 @@ class CompanyDetails extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          _createLogoLinkTop(),
+          _createLogoLinkTop(context),
           _customDivider(),
           _mainButtons(context),
           SizedBox(
