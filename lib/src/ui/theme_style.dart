@@ -12,9 +12,15 @@ double getFontSizeMain() {
   return 12.0;
 }
 
+double getFontSizeForm() {
+  if (devWidth > 900) return 25.0;
+  if (devWidth > 400) return 20.0;
+  return 14.0;
+}
+
 double getFontSizeLink() {
   if (devWidth > 900) return 22.0;
-  if (devWidth > 400) return 18.0;
+  if (devWidth > 400) return 15.0;
   return 12.0;
 }
 
@@ -28,6 +34,12 @@ double getFontSizeThumb() {
   if (devWidth > 900) return 15.0;
   if (devWidth > 400) return 10.5;
   return 10.0;
+}
+
+double getIconSize() {
+  if (devWidth > 900) return 50.0;
+  if (devWidth > 400) return 40.0;
+  return 30.0;
 }
 
 ThemeData meThemeData() {
@@ -53,7 +65,7 @@ FlatButton linkButton(String label, Function fnc) {
   );
 }
 
-RaisedButton mainButtons(String label, Function fnc) {
+RaisedButton mainButton(String label, Function fnc) {
   return RaisedButton(
     child: Text(
       label,
@@ -64,10 +76,37 @@ RaisedButton mainButtons(String label, Function fnc) {
   );
 }
 
+IconButton mainIconButton({Icon icon, String tip, Function fnc}) {
+  return IconButton(
+    icon: icon,
+    tooltip: tip,
+    highlightColor: Colors.white,
+    onPressed: fnc,
+    color: Colors.red,
+    iconSize: getIconSize(),
+  );
+}
+
 // Set styles
 TextStyle mainText() {
   return TextStyle(
       color: Colors.white, fontFamily: 'Arial', fontSize: getFontSizeMain());
+}
+
+TextStyle formText() {
+  return TextStyle(
+    color: Colors.white,
+    fontFamily: 'Arial',
+    fontSize: getFontSizeForm(),
+  );
+}
+
+TextStyle formMessageText() {
+  return TextStyle(
+    color: Colors.white,
+    fontFamily: 'Arial',
+    fontSize: getFontSizeForm(),
+  );
 }
 
 TextStyle thumbText() {

@@ -6,6 +6,7 @@ import 'package:markham_enterprises_inc/src/models/company.dart';
 import 'package:markham_enterprises_inc/src/ui/animation/into.dart';
 import 'package:markham_enterprises_inc/src/ui/animation/loop.dart';
 import 'package:markham_enterprises_inc/src/ui/animation/overlay.dart';
+import 'package:markham_enterprises_inc/src/ui/animation/overlay_email_form.dart';
 import 'package:markham_enterprises_inc/src/ui/animation/page_transition.dart';
 import 'package:markham_enterprises_inc/src/ui/theme_style.dart';
 import 'package:markham_enterprises_inc/src/ui/work_card.dart';
@@ -14,6 +15,7 @@ import 'package:url_launcher/url_launcher.dart';
 class CompanyDetails extends StatelessWidget {
   final Company company;
   final IntroAnimation animation;
+
   CompanyDetails(
       {@required this.company,
       @required AnimationController controller,
@@ -28,9 +30,15 @@ class CompanyDetails extends StatelessWidget {
     return;
   }
 
+  void openEmailOverlay(BuildContext context) {
+    Navigator.push(context, FadeRoute(widget: OverlayEmailFormAnimation()));
+    return;
+  }
+
   final double devWidth;
   final double devHeight;
   final double cardHeight;
+
   double getSpaceBuffer() {
     double topHeight = (devWidth > 600 ? 350.0 : 260.0) + 30;
     double space = devHeight - (cardHeight + topHeight);
@@ -120,22 +128,50 @@ class CompanyDetails extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          mainButtons(
-              'About', () => openOverlay(context, 'About', company.about)),
-          SizedBox(
-            width: 5.0,
-          ),
-          mainButtons('Technology',
-              () => openOverlay(context, 'Technology', company.technology)),
-          SizedBox(
-            width: 5.0,
-          ),
-          mainButtons('Philosophy',
-              () => openOverlay(context, 'Philosophy', company.philosophy)),
+          mainIconButton(
+              icon: Icon(Icons.email),
+              tip: 'Send Email',
+              fnc: () => openEmailOverlay(context)),
+          mainIconButton(
+              icon: Icon(Icons.info),
+              tip: 'About',
+              fnc: () => openOverlay(context, 'About', company.about)),
+          mainIconButton(
+              icon: Icon(Icons.code),
+              tip: 'Technology',
+              fnc: () =>
+                  openOverlay(context, 'Technology', company.technology)),
+          mainIconButton(
+              icon: Icon(Icons.school),
+              tip: 'Philosophy',
+              fnc: () => openOverlay(context, 'Philosophy', company.philosophy))
+
+          //'About', )),
         ],
       ),
     );
   }
+
+//
+//      child: Row(
+//        mainAxisAlignment: MainAxisAlignment.center,
+//        children: <Widget>[
+//          mainButtons(
+//              'About', () => openOverlay(context, 'About', company.about)),
+//          SizedBox(
+//            width: 5.0,
+//          ),
+//          mainButtons('Technology',
+//              () => openOverlay(context, 'Technology', company.technology)),
+//          SizedBox(
+//            width: 5.0,
+//          ),
+//          mainButtons('Philosophy',
+//              () => openOverlay(context, 'Philosophy', company.philosophy))
+//        ],
+//      ),
+//    );
+//  }
 
   Widget _customDivider() {
     return Padding(
@@ -145,11 +181,41 @@ class CompanyDetails extends StatelessWidget {
         margin: const EdgeInsets.symmetric(
           vertical: 14.0,
         ),
-        width: devWidth * animation.dividerWidth.value,
+        width: (devWidth) * animation.dividerWidth.value,
         height: 1.0,
       ),
     );
   }
+
+  /* MAYBE ADD CONTACT Functionality
+   Widget _customDivider() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+      child: Row(
+        children: <Widget>[
+          Opacity(
+            opacity: animation.mainButtonsOpacity.value,
+            child: IconButton(
+              icon: Icon(
+                Icons.email,
+                color: Colors.white,
+              ),
+              onPressed: () => print('contact'),
+            ),
+          ),
+          Container(
+            color: Colors.white.withOpacity(0.8),
+            margin: const EdgeInsets.symmetric(
+              vertical: 14.0,
+            ),
+            width: (devWidth * 0.7) * animation.dividerWidth.value,
+            height: 1.0,
+          ),
+        ],
+      ),
+    );
+  }
+   */
 
   Widget _createContent(BuildContext context) {
     double space = getSpaceBuffer();

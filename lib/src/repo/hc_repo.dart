@@ -90,7 +90,7 @@ class HardCodedRepo {
   static _getPoolGameInfo() {
     return 'IO Sharks - Pocket Duel (Profile Sample)'
         '\n\nhttps://markhamenterprises.com/portfolio/hs_v17/'
-        '\n\nThe IO Sharks - Pocket Duel JavaScript project rapidly developed in 20... The game was a marketing endeavor to educate user their pharmaceutical products while entertaining them with an interactive pool game. The user would score points with product knowledge and through successfully playing sinking balls in the billards game. This project was developed by Markham Enterprises in 6 weeks with JavaScript, CSS, jQuery, and WebBox2d.'
+        '\n\nThe IO Sharks - Pocket Duel JavaScript project rapidly developed in 2014. The game was a marketing endeavor to educate user their pharmaceutical products while entertaining them with an interactive pool game. The user would score points with product knowledge and through successfully playing sinking balls in the billards game.'
         '\n\n========================'
         '\n\nPlease visit us: https://markhamenterprises.com/portfolio/hs_v17/';
   }
