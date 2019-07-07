@@ -5,7 +5,7 @@ Just a quick little profile app for my company :
 
 - Play Store Link : https://play.google.com/store/apps/details?id=apps.markhamenterprise.mei.markham_enterprises_inc
 
-- Itunes: coming soon (waiitng on approval).
+- iOS App Store: coming soon (waiting on approval).
 
 ## Getting Started
 
